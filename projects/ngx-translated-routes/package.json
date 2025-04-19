@@ -1,0 +1,30 @@
+{
+  "name": "ngx-translated-routes",
+  "version": "1.0.0",
+  "description": "A powerful Angular library for managing translated routes in your application",
+  "keywords": ["angular", "routes", "translation", "i18n", "localization"],
+  "author": "Klaudia Klubinska",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/klubinskak/ngx-translated-routes.git"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "ng build ngx-translated-routes",
+    "test": "ng test ngx-translated-routes",
+    "lint": "ng lint ngx-translated-routes",
+    "prepare": "npm run build"
+  },
+  "peerDependencies": {
+    "@angular/common": "^19.2.0",
+    "@angular/core": "^19.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  
+  "sideEffects": false,
+  "license": "MIT"
+}
