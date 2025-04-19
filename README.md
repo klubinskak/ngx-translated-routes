@@ -1,59 +1,148 @@
-# NgxTranslatedRoutes
+# ngx-translated-routes
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+A powerful Angular library for managing translated routes in your application. This library seamlessly integrates with `@ngx-translate/core` to provide route translations while maintaining all Angular router features.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- 🔄 Automatic route translation based on language
+- 🌐 Supports multiple languages
+- 🔍 URL-based language detection
+- 🛡️ Preserves all Angular router features (guards, resolvers, etc.)
+- 🧩 Deep cloning of routes to prevent reference issues
+- 🔧 Configurable debug mode
+- 📦 Easy integration with existing applications
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Installation
 
 ```bash
-ng generate component component-name
+npm install ngx-translated-routes
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Setup
 
-```bash
-ng generate --help
+1. Import the necessary modules in your `app.config.ts`:
+
+```typescript
+import { provideTranslatedRoutes } from 'ngx-translated-routes';
+import { TranslateModule } from '@ngx-translate/core';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideTranslatedRoutes({
+      baseLang: 'en',
+      supportedLangs: ['en', 'fr', 'es', 'de', 'pl'],
+      debug: false // Enable for development
+    }),
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      useDefaultLang: true,
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }).providers!
+  ]
+};
 ```
 
-## Building
+2. Create translation files for each language (e.g., `fr.json`):
 
-To build the project run:
-
-```bash
-ng build
+```json
+{
+  "routes": {
+    "users": "utilisateurs",
+    "profile": "profil",
+    "about-us": "a-propos"
+  }
+}
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Usage
 
-## Running unit tests
+The library automatically handles route translations based on your configuration. For example:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- English route: `/users/1`
+- French route: `/utilisateurs/1`
 
-```bash
-ng test
+The library will:
+- Detect the language from the URL
+- Set the appropriate language in the translation service
+- Maintain the translated routes throughout navigation
+
+## Configuration Options
+
+```typescript
+interface NgxTranslatedRoutesConfig {
+  baseLang: string;          // Default language (e.g., 'en')
+  supportedLangs: string[];  // List of supported languages
+  debug?: boolean;           // Enable debug logging
+}
 ```
 
-## Running end-to-end tests
+## How It Works
 
-For end-to-end (e2e) testing, run:
+1. **Initialization**:
+   - The service deep clones your original routes
+   - Loads translations for each supported language
+   - Creates translated versions of your routes
 
-```bash
-ng e2e
+2. **Navigation**:
+   - Detects language from URL segments
+   - Sets the appropriate language in the translation service
+   - Maintains route translations during navigation
+
+3. **Route Translation**:
+   - Preserves all route properties (guards, resolvers, etc.)
+   - Handles nested routes
+   - Maintains route parameters
+
+## Best Practices
+
+1. **Translation Files**:
+   - Keep route translations in separate files
+   - Use consistent naming conventions
+   - Include all necessary routes
+
+2. **Route Configuration**:
+   - Define all routes in your base language
+   - Use meaningful route paths
+   - Consider SEO implications
+
+3. **Language Detection**:
+   - The library uses URL-based detection
+   - Falls back to browser language if needed
+   - Stores selected language in localStorage
+
+## Debugging
+
+Enable debug mode in your configuration to see detailed logs:
+
+```typescript
+provideTranslatedRoutes({
+  baseLang: 'en',
+  supportedLangs: ['en', 'fr', 'es', 'de', 'pl'],
+  debug: true
+})
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Production Considerations
 
-## Additional Resources
+1. **Performance**:
+   - Route translations are loaded once during initialization
+   - Deep cloning ensures route integrity
+   - Minimal impact on runtime performance
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+2. **SEO**:
+   - Each language has its own URL
+   - Search engines can index translated routes
+   - Proper language tags are maintained
+
+3. **Maintenance**:
+   - Keep translation files up to date
+   - Test all language combinations
+   - Monitor route changes
+
+## License
+
+MIT

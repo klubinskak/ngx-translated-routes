@@ -133,6 +133,5 @@
   },
   "cli": {
     "analytics": "17efde81-8183-4aef-9ac2-8469dff1a67e"
-  },
-  "defaultProject": "ngx-translated-routes-showcase"
+  }
 }

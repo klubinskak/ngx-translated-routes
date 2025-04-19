@@ -3,7 +3,7 @@ name: Deploy Showcase
 on:
   push:
     branches:
-      - main
+      - main, master
     paths:
       - 'projects/ngx-translated-routes-showcase/**'
       - '.github/workflows/deploy-showcase.yml'
