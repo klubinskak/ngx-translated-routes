@@ -13,7 +13,6 @@
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "project": "projects/ngx-translated-routes/ng-package.json",
-            "watch": true
           },
           "configurations": {
             "production": {
