@@ -1,0 +1,54 @@
+name: Publish Package
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'projects/ngx-translated-routes/**'
+      - '.github/workflows/publish.yml'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+          
+      - name: Prepare workspace
+        run: |
+          # Create a temporary package.json without the library dependency
+          cp package.json package.json.bak
+          jq 'del(.dependencies."ngx-translated-routes")' package.json > package.json.tmp
+          mv package.json.tmp package.json
+          
+      - name: Install dependencies
+        run: npm ci
+          
+      - name: Build library
+        run: |
+          # Build the library
+          cd projects/ngx-translated-routes
+          npm install
+          npm run build
+          npm pack
+          cd ../..
+          
+          # Create dist directory and move the tarball
+          mkdir -p dist/ngx-translated-routes
+          mv projects/ngx-translated-routes/ngx-translated-routes-1.0.0.tgz dist/ngx-translated-routes/
+          
+          # Restore the original package.json
+          mv package.json.bak package.json
+          
+      - name: Publish to npm
+        run: |
+          cd projects/ngx-translated-routes
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} 

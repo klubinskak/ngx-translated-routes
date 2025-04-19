@@ -1,0 +1,28 @@
+{
+  "app": {
+    "welcome": "Willkommen bei ngx-translate-routes! 🎉",
+    "home": "Startseite",
+    "aboutUs": "Über uns",
+    "dashboard": "Table",
+    "profile": "Einstellungen",
+    "profileDetails": "Präferenzen",
+    "myAccount": "Mein Konto",
+    "users": "Benutzer",
+    "aboutUsMessage": "Über uns Seite funktioniert!",
+    "profileMessage": "Einstellungen Seite funktioniert!",
+    "profileDetailsMessage": "Präferenzen Seite funktioniert!",
+    "myAccountMessage": "Mein Konto Seite funktioniert!",
+    "usersMessage": "Benutzer Seite funktioniert!",
+    "notFoundMessage": "Seite nicht gefunden!"
+  },
+  "routes": {
+    "home": "startseite",
+    "about-us": "ueber-uns",
+    "dashboard": "table",
+    "settings": "einstellungen",
+    "preferences": "praeferenzen",
+    "my-account": "mein-konto",
+    "users": "benutzer",
+    "users/:id": "benutzer/:id"
+  }
+}

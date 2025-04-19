@@ -1,0 +1,64 @@
+name: Deploy Showcase 
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'projects/ngx-translated-routes-showcase/**'
+      - '.github/workflows/deploy-showcase.yml'
+
+jobs:
+  build-and-deploy:
+    # Only run for repository owner
+    if: github.repository_owner == 'klubinskak'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Prepare workspace
+        run: |
+          # Create a temporary package.json without the library dependency
+          cp package.json package.json.bak
+          jq 'del(.dependencies."ngx-translated-routes")' package.json > package.json.tmp
+          mv package.json.tmp package.json
+          
+      - name: Install dependencies
+        run: npm ci
+          
+      - name: Build library
+        run: |
+          # Build the library
+          cd projects/ngx-translated-routes
+          npm install
+          npm run build
+          npm pack
+          cd ../..
+          
+          # Create dist directory and move the tarball
+          mkdir -p dist/ngx-translated-routes
+          mv projects/ngx-translated-routes/ngx-translated-routes-1.0.0.tgz dist/ngx-translated-routes/
+          
+          # Restore the original package.json
+          mv package.json.bak package.json
+          
+          # Install the local library
+          npm install ./dist/ngx-translated-routes/ngx-translated-routes-1.0.0.tgz
+        
+      - name: Build showcase
+        run: npm run build:showcase -- --base-href=/ngx-translated-routes/
+        
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/ngx-translated-routes-showcase
+          commit_message: "Deploy showcase to GitHub Pages"
+          allow_empty_commit: true
