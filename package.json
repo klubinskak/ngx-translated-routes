@@ -1,6 +1,6 @@
 {
-  "name": "ngx-translated-routes",
-  "version": "1.0.1",
+  "name": "@klubinskak/ngx-translated-routes",
+  "version": "1.0.0",
   "description": "A powerful Angular library for managing translated routes in your application",
   "author": "Klaudia Klubinska <klubinskak@github.com>",
   "repository": {
