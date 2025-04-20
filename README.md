@@ -15,7 +15,7 @@ A powerful Angular library for managing translated routes in your application. T
 ## Installation
 
 ```bash
-npm install ngx-translated-routes
+npm install @klubinskak/ngx-translated-routes
 ```
 
 ## Setup
@@ -23,7 +23,7 @@ npm install ngx-translated-routes
 1. Import the necessary modules in your `app.config.ts`:
 
 ```typescript
-import { provideTranslatedRoutes } from 'ngx-translated-routes';
+import { provideTranslatedRoutes } from '@klubinskak/ngx-translated-routes';
 import { TranslateModule } from '@ngx-translate/core';
 
 export const appConfig: ApplicationConfig = {
