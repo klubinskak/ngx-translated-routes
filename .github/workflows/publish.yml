@@ -1,9 +1,14 @@
-name: Publish to npm
+name: Publish to npm and GitHub
 
 on:
   release:
     types: [created]
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (format: 1.0.0)'
+        required: true
+        default: ''
 
 jobs:
   publish:
@@ -31,6 +36,18 @@ jobs:
           rm -f package-lock.json
           npm install
       
+      - name: Update version if specified
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.version != ''
+        run: |
+          npm version ${{ github.event.inputs.version }} --no-git-tag-version
+          echo "RELEASE_VERSION=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+      
+      - name: Get version from package.json
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.version == ''
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          echo "RELEASE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
+      
       - name: Build library
         run: npm run build:lib
       
@@ -49,4 +66,19 @@ jobs:
           cd dist/ngx-translated-routes
           npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} 
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
+      - name: Create GitHub Release
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.RELEASE_VERSION }}
+          release_name: Release v${{ env.RELEASE_VERSION }}
+          draft: false
+          prerelease: false
+          body: |
+            ## @klubinskak/ngx-translated-routes v${{ env.RELEASE_VERSION }}
+            
+            A powerful Angular library for managing translated routes in your application. 

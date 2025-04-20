@@ -57,7 +57,9 @@
     "routes",
     "translation",
     "i18n",
-    "localization"
+    "localization",
+    "npm",
+    "package"
   ],
   "license": "MIT"
 }
