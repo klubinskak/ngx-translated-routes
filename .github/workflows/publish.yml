@@ -1,0 +1,52 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+      
+      - name: Check NPM_TOKEN
+        run: |
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "Error: NPM_TOKEN secret is not set"
+            exit 1
+          fi
+      
+      - name: Install dependencies
+        run: |
+          # Remove any stale locks and install clean
+          rm -f package-lock.json
+          npm install
+      
+      - name: Build library
+        run: npm run build:lib
+      
+      - name: Verify package
+        run: |
+          cd dist/ngx-translated-routes
+          if [ ! -f "package.json" ]; then
+            echo "Error: package.json not found in dist folder"
+            exit 1
+          fi
+          npm pack --dry-run
+      
+      - name: Publish to npm
+        run: |
+          echo "Publishing package to npm..."
+          cd dist/ngx-translated-routes
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} 

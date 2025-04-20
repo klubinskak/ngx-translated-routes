@@ -1,0 +1,136 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ngx-translated-routes": {
+      "projectType": "library",
+      "root": "projects/ngx-translated-routes",
+      "sourceRoot": "projects/ngx-translated-routes/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-translated-routes/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-translated-routes/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-translated-routes/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ngx-translated-routes/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-translated-routes-showcase": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/ngx-translated-routes-showcase",
+      "sourceRoot": "projects/ngx-translated-routes-showcase/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/ngx-translated-routes-showcase",
+            "index": "projects/ngx-translated-routes-showcase/src/index.html",
+            "browser": "projects/ngx-translated-routes-showcase/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/ngx-translated-routes-showcase/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/ngx-translated-routes-showcase/public",
+                "output": "/"
+              }
+            ],
+            "styles": [
+              "projects/ngx-translated-routes-showcase/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "ngx-translated-routes-showcase:build:production"
+            },
+            "development": {
+              "buildTarget": "ngx-translated-routes-showcase:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "ngx-translated-routes-showcase:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/ngx-translated-routes-showcase/tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/ngx-translated-routes-showcase/public"
+              }
+            ],
+            "styles": [
+              "projects/ngx-translated-routes-showcase/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "17efde81-8183-4aef-9ac2-8469dff1a67e"
+  }
+}
