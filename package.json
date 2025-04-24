@@ -1,0 +1,66 @@
+{
+  "name": "@klubinskak/ngx-translated-routes",
+  "version": "1.0.0",
+  "description": "A powerful Angular library for managing translated routes in your application",
+  "author": "Klaudia Klubinska <klubinskak@github.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/klubinskak/ngx-translated-routes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/klubinskak/ngx-translated-routes/issues"
+  },
+  "homepage": "https://github.com/klubinskak/ngx-translated-routes#readme",
+  "workspaces": [
+    "projects/*"
+  ],
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "build:lib": "ng build ngx-translated-routes --configuration production",
+    "test": "ng test",
+    "build:showcase": "ng build ngx-translated-routes-showcase --configuration production",
+    "deploy:showcase": "vercel deploy --prod"
+  },
+  "dependencies": {
+    "@klubinskak/ngx-translated-routes": "^1.0.0",
+    "@ngx-translate/core": "^16.0.4",
+    "@ngx-translate/http-loader": "^16.0.1",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^19.2.8",
+    "@angular/animations": "^19.2.7",
+    "@angular/cli": "^19.2.3",
+    "@angular/common": "^19.2.0",
+    "@angular/compiler": "^19.2.0",
+    "@angular/compiler-cli": "^19.2.0",
+    "@angular/core": "^19.2.0",
+    "@angular/forms": "^19.2.0",
+    "@angular/platform-browser": "^19.2.0",
+    "@angular/platform-browser-dynamic": "^19.2.0",
+    "@angular/router": "^19.2.0",
+    "@types/jasmine": "~5.1.0",
+    "jasmine-core": "~5.6.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-packagr": "^19.2.0",
+    "rxjs": "~7.8.0",
+    "typescript": "~5.7.2",
+    "zone.js": "~0.15.0"
+  },
+  "keywords": [
+    "angular",
+    "routes",
+    "translation",
+    "i18n",
+    "localization",
+    "npm",
+    "package"
+  ],
+  "license": "MIT"
+}

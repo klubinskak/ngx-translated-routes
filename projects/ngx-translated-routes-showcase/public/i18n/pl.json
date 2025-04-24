@@ -1,0 +1,26 @@
+{
+  "app": {
+    "welcome": "Witaj w ngx-translate-routes! 🎉",
+    "home": "Strona główna",
+    "aboutUs": "O nas",
+    "profile": "Ustawienia",
+    "profileDetails": "Preferencje",
+    "myAccount": "Moje konto",
+    "users": "Użytkownicy", 
+    "aboutUsMessage": "O nas strona działa!",
+    "profileMessage": "Ustawienia strona działa!",
+    "profileDetailsMessage": "Preferencje strona działa!",
+    "myAccountMessage": "Moje konto strona działa!",
+    "usersMessage": "Użytkownicy strona działa!",
+    "notFoundMessage": "Strona nie znaleziona!"
+  },
+  "routes": {
+    "home": "strona-glowna",
+    "about-us": "o-nas",
+    "settings": "ustawienia",
+    "preferences": "preferencje",
+    "my-account": "moje-konto",
+    "users": "uzytkownicy",
+    "users/:id": "uzytkownicy/:id"
+  }
+} 
