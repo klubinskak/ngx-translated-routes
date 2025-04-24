@@ -1,6 +1,6 @@
 # ngx-translated-routes
 
-A powerful Angular library for managing translated routes in your application. This library seamlessly integrates with `@ngx-translate/core` to provide route translations while maintaining all Angular router features.
+A powerful Angular library for managing translated routes in your application.
 
 ## Features
 
@@ -15,7 +15,7 @@ A powerful Angular library for managing translated routes in your application. T
 ## Installation
 
 ```bash
-npm install @klubinskak/ngx-translated-routes
+npm install @klubinskak/ngx-translated-routes @ngx-translate/core
 ```
 
 ## Setup
@@ -142,6 +142,39 @@ provideTranslatedRoutes({
    - Keep translation files up to date
    - Test all language combinations
    - Monitor route changes
+
+## Contributing
+
+Contributions are welcome! Here's how you can contribute:
+
+1. **Fork the repository**
+   - Create your own fork of the project
+   - Clone it to your local machine
+
+2. **Create a Feature Branch**
+   - `git checkout -b feature/your-feature-name`
+
+3. **Make Your Changes**
+   - Implement your feature or bug fix
+   - Add or update tests as necessary
+   - Make sure all tests pass
+
+4. **Follow Coding Standards**
+   - Maintain consistent code style
+   - Add appropriate comments
+   - Update documentation if needed
+
+5. **Commit Your Changes**
+   - Use clear and descriptive commit messages
+   - Reference issue numbers if applicable
+
+6. **Submit a Pull Request**
+   - Push your changes to your fork
+   - Submit a pull request to the main repository
+   - Describe your changes in detail
+
+7. **Code Review**
+   - Wait for code review and address any feedback
 
 ## License
 

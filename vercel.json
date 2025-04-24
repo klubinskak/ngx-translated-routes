@@ -11,5 +11,8 @@
       "src": "/(.*)",
       "dest": "/dist/ngx-translated-routes-showcase/browser/index.html"
     }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/dist/ngx-translated-routes-showcase/browser/index.html" }
   ]
 } 

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-translated-routes": {
+    "@klubinskak/ngx-translated-routes": {
       "projectType": "library",
       "root": "projects/ngx-translated-routes",
       "sourceRoot": "projects/ngx-translated-routes/src",

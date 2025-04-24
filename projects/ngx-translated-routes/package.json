@@ -1,6 +1,6 @@
 {
   "name": "@klubinskak/ngx-translated-routes",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A powerful Angular library for managing translated routes in your application",
   "keywords": ["angular", "routes", "translation", "i18n", "localization"],
   "author": {
@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/klubinskak/ngx-translated-routes#readme",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=18.18.0"
   },
   "main": "fesm2022/ngx-translated-routes.mjs",
   "module": "fesm2022/ngx-translated-routes.mjs",

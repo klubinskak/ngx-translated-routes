@@ -5,7 +5,7 @@ import { routes } from './app.routes';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
-import { provideTranslatedRoutes } from 'ngx-translated-routes';
+import { provideTranslatedRoutes } from '@klubinskak/ngx-translated-routes';
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/i18n/', '.json');

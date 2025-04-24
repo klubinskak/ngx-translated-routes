@@ -10,7 +10,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "ngx-translated-routes": [
+      "@klubinskak/ngx-translated-routes": [
         "./projects/ngx-translated-routes/src/public-api.ts"
       ]
     },

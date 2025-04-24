@@ -14,11 +14,14 @@
   "workspaces": [
     "projects/*"
   ],
+  "engines": {
+    "node": ">=18.18.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:lib": "ng build ngx-translated-routes --configuration production",
+    "build:lib": "NODE_OPTIONS=--max_old_space_size=4096 npx -p @angular/cli@19.2.3 ng build --configuration production",
     "test": "ng test",
     "build:showcase": "ng build ngx-translated-routes-showcase --configuration production",
     "deploy:showcase": "vercel deploy --prod"
